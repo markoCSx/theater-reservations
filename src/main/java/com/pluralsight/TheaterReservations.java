@@ -14,18 +14,26 @@ public class TheaterReservations {
         String userText;
         DateTimeFormatter formatter;
 
-        //User prompts
-        System.out.println("Enter Full Name: ");
+//-------------------User prompts
+        //Full Name
+        System.out.print("Enter Full Name: ");
         userText = userInput.nextLine();
         String fullName = userText;
-
-        System.out.println("Enter Showing Date (dd/MM/yyyy): ");
+        //Show Date
+        System.out.print("Enter Showing Date (MM/dd/yyyy): ");
         userText = userInput.nextLine();
         String userDate = userText;
-
+        //Number of Tickets
+        System.out.print("Enter Number of Tickets: ");
+        userText = userInput.nextLine();
+        int tickets = Integer.parseInt(userText);
+//-----------------------------------------------------------------
         //Formating userDate
-        formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        formatter = DateTimeFormatter.ofPattern("MM/dd/yyyy");
         LocalDate showDate = LocalDate.parse(userDate, formatter);
+
+        //Receipt
+        System.out.printf("%d ticket(s) reserved for %s under %s", tickets, showDate, fullName);
 
     }
 
