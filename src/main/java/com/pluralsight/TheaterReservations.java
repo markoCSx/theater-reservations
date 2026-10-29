@@ -3,6 +3,7 @@ package com.pluralsight;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Scanner;
+import java.util.regex.Pattern;
 
 public class TheaterReservations {
 
@@ -10,7 +11,7 @@ public class TheaterReservations {
 
     public static void main(String[] args) {
 
-        //Scanner variable
+        //Scanner & Date variables
         String userText;
         DateTimeFormatter formatter;
 
@@ -19,6 +20,9 @@ public class TheaterReservations {
         System.out.print("Enter Full Name: ");
         userText = userInput.nextLine();
         String fullName = userText;
+        String[] firstLastNames = fullName.split(Pattern.quote(" "));
+        String firstName = firstLastNames[0];
+        String lastName = firstLastNames[1];
         //Show Date
         System.out.print("Enter Showing Date (MM/dd/yyyy): ");
         userText = userInput.nextLine();
@@ -33,7 +37,13 @@ public class TheaterReservations {
         LocalDate showDate = LocalDate.parse(userDate, formatter);
 
         //Receipt
-        System.out.printf("%d ticket(s) reserved for %s under %s", tickets, showDate, fullName);
+        if (tickets > 1) {
+            System.out.printf("%d tickets reserved for %s under %s, %s", tickets, showDate, firstName, lastName);
+        } else if (tickets == 1) {
+            System.out.printf("%d ticket reserved for %s under %s, %s", tickets, showDate, firstName, lastName);
+        } else {
+            System.out.println("Have a good day!");
+        }
 
     }
 
